@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>project-cas</module>
-        <module>project-blog</module>
+        <module>project-auth</module>
         <module>project-movie</module>
         <module>project-common</module>
         <module>project-gateway</module>
@@ -26,28 +26,61 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!--自研JAR包版本-->
+        <common.version>1.0.0-SNAPSHOT</common.version>
+
+        <!--第三方依赖版本-->
+        <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <spring.cloud.alibaba.version>2.1.1.RELEASE</spring.cloud.alibaba.version>
+        <mysql.connecter.version>8.0.22</mysql.connecter.version>
+        <hutool.version>5.5.7</hutool.version>
+        <tk.mapper.version>2.1.5</tk.mapper.version>
     </properties>
 
+    <!--版本管理-->
     <dependencyManagement>
         <dependencies>
+            <!--自研JAR包版本版本管理-->
+            <dependency>
+                <groupId>com.tianqi</groupId>
+                <artifactId>project-common</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <!--第三方依赖版本管理-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
+                <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.1.1.RELEASE</version>
+                <version>${spring.cloud.alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connecter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.mapper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
-
+    <!--通用依赖-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,12 +97,10 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.5.7</version>
         </dependency>
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
